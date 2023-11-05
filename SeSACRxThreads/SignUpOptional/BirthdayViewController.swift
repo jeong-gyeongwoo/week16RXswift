@@ -69,16 +69,10 @@ class BirthdayViewController: UIViewController {
     let nextButton = PointButton(title: "가입하기")
     
     let disposeBag = DisposeBag()
-    let birthday = BehaviorSubject(value: Date.now)
-    let year = BehaviorSubject(value: 0)
-    let month = BehaviorSubject(value: 0)
-    let day = BehaviorSubject(value: 0)
     
     let ageLabel = UILabel()
-    var ageEnabled = BehaviorSubject(value: false)
     
-    
-    
+    let viewModel = BirthdayViewModel()
     
     
     override func viewDidLoad() {
@@ -96,37 +90,11 @@ class BirthdayViewController: UIViewController {
     func bind() {
         
         birthDayPicker.rx.date
-            .bind(to: birthday)
+            .bind(to: viewModel.birthday)
             .disposed(by: disposeBag)
-        
-        birthday
-            .subscribe(with: self) { owner, date in
-                let component = Calendar.current.dateComponents([.year,.month,.day], from: date)
-                let today = Calendar.current.dateComponents([.year,.month,.day], from: Date.now)
-                
-                owner.year.onNext(component.year!)
-                owner.month.onNext(component.month!)
-                owner.day.onNext(component.day!)
-                
-                if today.year! - component.year! == 17, today.month! == component.month!, today.day! >= component.day! {
-                    owner.ageEnabled.onNext(true)
-                }  else if today.year! - component.year! == 17, today.month! > component.month! {
-                    owner.ageEnabled.onNext(true)
-                } else if today.year! - component.year! > 17 {
-                    owner.ageEnabled.onNext(true)
-                }  else {
-                    owner.ageEnabled.onNext(false)
-                }
-                
-                
-                
-                
-            } onDisposed: { Object in
-                print("birthday dispose")
-            }
-            .disposed(by: disposeBag)
-        
-        year
+            
+     
+        viewModel.year
             .observe(on: MainScheduler.instance)
             .subscribe(with: self) { owner, value in
                 owner.yearLabel.text = "\(value)년"
@@ -135,7 +103,7 @@ class BirthdayViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        month
+        viewModel.month
             .map{"\($0)월"}
             .observe(on: MainScheduler.instance)
             .subscribe(with: self) { owner, value in
@@ -145,22 +113,28 @@ class BirthdayViewController: UIViewController {
             }
             .disposed(by: disposeBag)
         
-        day
+        viewModel.day
             .map{"\($0)일"}
             .bind(to: dayLabel.rx.text)
             .disposed(by: disposeBag)
         
         
-        ageEnabled
+        viewModel.ageEnabled
             .subscribe(with: self, onNext: { object, bool in
-                let text = bool ? "만 17세 이상입니다" : "만 17세 미만입니다"
+                //let text = bool ? "만 17세 이상입니다" : "만 17세 미만입니다"
                 let color = bool ? UIColor.black : UIColor.red
-                object.ageLabel.text = text
+                //object.viewModel.yearText.onNext(text)
                 object.nextButton.isEnabled = bool
                 object.nextButton.backgroundColor = color
             })
             .disposed(by: disposeBag)
         
+        
+        viewModel.yearText
+            .subscribe(with: self) { Object, String in
+                Object.ageLabel.text = String
+            }
+            .disposed(by: disposeBag)
     }
     
     

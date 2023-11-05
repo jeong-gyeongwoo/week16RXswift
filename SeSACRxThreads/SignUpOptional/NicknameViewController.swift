@@ -36,6 +36,7 @@ class NicknameViewController: UIViewController {
             .disposed(by: disposeBag)
         
         nicknameTextField.rx.text.orEmpty
+            .observe(on: MainScheduler.instance)
             .bind {
                 self.nickname.onNext($0)
             }

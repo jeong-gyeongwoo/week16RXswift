@@ -18,10 +18,11 @@ class SignInViewController: UIViewController {
     let signUpButton = UIButton()
     
     let testSwitch = UISwitch()
-    let isOn = //Observable.just(false) // 전달만
-//     BehaviorSubject(value: true) // 초기값
-     PublishSubject<Bool>() // 초기값 없는 버젼
+//    let isOn = //Observable.just(false) // 전달만
+////     BehaviorSubject(value: true) // 초기값
+//     PublishSubject<Bool>() // 초기값 없는 버젼
     
+    let viewModel = SignInViewModel()
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
@@ -35,8 +36,55 @@ class SignInViewController: UIViewController {
         signUpButton.addTarget(self, action: #selector(signUpButtonClicked), for: .touchUpInside)
         
         activateSwitch()
+        bind()
+    }
+    
+    func bind() {
+        
+        viewModel.email
+            .bind(to: emailTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        emailTextField.rx.text.orEmpty
+            .subscribe(with: self) { owner, value in
+                owner.viewModel.email.onNext(value)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.password
+            .bind(to: passwordTextField.rx.text)
+            .disposed(by: disposeBag)
+        
+        passwordTextField.rx.text.orEmpty
+            .subscribe(with: self) { owner, value in
+                owner.viewModel.password.onNext(value)
+            }
+            .disposed(by: disposeBag)
+
+        viewModel.buttonStatus
+            .subscribe(with: self) { owner, value in
+                owner.signInButton.backgroundColor = value ? UIColor.blue : UIColor.red
+                owner.emailTextField.layer.borderColor = value ? UIColor.blue.cgColor : UIColor.red.cgColor
+                owner.passwordTextField.layer.borderColor = value ? UIColor.blue.cgColor : UIColor.red.cgColor
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.buttonStatus
+            .bind(to: signInButton.rx.isEnabled)
+            .disposed(by: disposeBag)
+        
+        
+        signInButton.rx.tap
+            .subscribe(with: self) { owner, value in
+                print("SELECT")
+            }
+            .disposed(by: disposeBag)
         
     }
+    
+    
+    
+    
     
     func activateSwitch() {
         
@@ -46,33 +94,16 @@ class SignInViewController: UIViewController {
             make.leading.equalTo(100)
         }
         
-//        isOn
-//            .subscribe { value in
-//                self.testSwitch.setOn(value, animated: false)
-//            } onCompleted: {
-//                print("스위치에 값전달 완료")
-//            }
-//            .disposed(by: disposeBag)
-      
-        isOn
-            .bind(to: testSwitch.rx.isOn)
+        viewModel.isOn
+            .observe(on: MainScheduler.instance)
+            //애니메이션을 주기위해
+            .subscribe(with: self) { owner, value in
+                owner.testSwitch.setOn(value, animated: true)
+            }
+            //.bind(to: testSwitch.rx.isOn)
             .disposed(by: disposeBag)
-        
-        isOn.onNext(true)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-            self.isOn.onNext(false)
-        }
-        
-        
-      
-        
     }
-    
-    
-    
-    
-    
+
     @objc func signUpButtonClicked() {
         navigationController?.pushViewController(SignUpViewController(), animated: true)
     }
