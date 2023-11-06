@@ -29,6 +29,13 @@
 		041280732AEFAD4B00972552 /* NicknameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280722AEFAD4B00972552 /* NicknameViewController.swift */; };
 		041280782AF1D14000972552 /* Resource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 041280772AF1D14000972552 /* Resource.swift */; };
 		F49C9BCD2AF3BE810015A712 /* BirthdayViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49C9BCC2AF3BE810015A712 /* BirthdayViewModel.swift */; };
+		F4D3BC0B2AF7509D005A6D21 /* ShoppingListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3BC0A2AF7509D005A6D21 /* ShoppingListViewCell.swift */; };
+		F4D3BC0D2AF750AB005A6D21 /* ShoppingListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3BC0C2AF750AB005A6D21 /* ShoppingListViewModel.swift */; };
+		F4D3BC0F2AF750BF005A6D21 /* ShoppingListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3BC0E2AF750BF005A6D21 /* ShoppingListViewController.swift */; };
+		F4D3BC182AF75615005A6D21 /* StarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3BC172AF75615005A6D21 /* StarViewController.swift */; };
+		F4D3BC1A2AF778C6005A6D21 /* ShoppingListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D3BC192AF778C6005A6D21 /* ShoppingListModel.swift */; };
+		F4E25D3A2AF8B49000B6C24F /* StarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E25D392AF8B49000B6C24F /* StarViewModel.swift */; };
+		F4E25D3E2AF8B80300B6C24F /* StarListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E25D3D2AF8B80300B6C24F /* StarListViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -72,6 +79,13 @@
 		041280722AEFAD4B00972552 /* NicknameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NicknameViewController.swift; sourceTree = "<group>"; };
 		041280772AF1D14000972552 /* Resource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Resource.swift; sourceTree = "<group>"; };
 		F49C9BCC2AF3BE810015A712 /* BirthdayViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BirthdayViewModel.swift; sourceTree = "<group>"; };
+		F4D3BC0A2AF7509D005A6D21 /* ShoppingListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewCell.swift; sourceTree = "<group>"; };
+		F4D3BC0C2AF750AB005A6D21 /* ShoppingListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewModel.swift; sourceTree = "<group>"; };
+		F4D3BC0E2AF750BF005A6D21 /* ShoppingListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListViewController.swift; sourceTree = "<group>"; };
+		F4D3BC172AF75615005A6D21 /* StarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewController.swift; sourceTree = "<group>"; };
+		F4D3BC192AF778C6005A6D21 /* ShoppingListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShoppingListModel.swift; sourceTree = "<group>"; };
+		F4E25D392AF8B49000B6C24F /* StarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarViewModel.swift; sourceTree = "<group>"; };
+		F4E25D3D2AF8B80300B6C24F /* StarListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarListViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +119,7 @@
 		041280172AEF9BAB00972552 = {
 			isa = PBXGroup;
 			children = (
+				F4D3BC092AF75089005A6D21 /* ShoppingList */,
 				041280222AEF9BAB00972552 /* SeSACRxThreads */,
 				041280392AEF9BAC00972552 /* SeSACRxThreadsTests */,
 				041280432AEF9BAC00972552 /* SeSACRxThreadsUITests */,
@@ -193,6 +208,28 @@
 				041280722AEFAD4B00972552 /* NicknameViewController.swift */,
 			);
 			path = SignUpOptional;
+			sourceTree = "<group>";
+		};
+		F4D3BC092AF75089005A6D21 /* ShoppingList */ = {
+			isa = PBXGroup;
+			children = (
+				F4D3BC0E2AF750BF005A6D21 /* ShoppingListViewController.swift */,
+				F4D3BC0C2AF750AB005A6D21 /* ShoppingListViewModel.swift */,
+				F4D3BC192AF778C6005A6D21 /* ShoppingListModel.swift */,
+				F4D3BC0A2AF7509D005A6D21 /* ShoppingListViewCell.swift */,
+				F4E25D362AF8AD4E00B6C24F /* Star */,
+			);
+			path = ShoppingList;
+			sourceTree = "<group>";
+		};
+		F4E25D362AF8AD4E00B6C24F /* Star */ = {
+			isa = PBXGroup;
+			children = (
+				F4D3BC172AF75615005A6D21 /* StarViewController.swift */,
+				F4E25D392AF8B49000B6C24F /* StarViewModel.swift */,
+				F4E25D3D2AF8B80300B6C24F /* StarListViewCell.swift */,
+			);
+			path = Star;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -335,16 +372,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				041280782AF1D14000972552 /* Resource.swift in Sources */,
+				F4D3BC182AF75615005A6D21 /* StarViewController.swift in Sources */,
 				0412806F2AEFAD2D00972552 /* BirthdayViewController.swift in Sources */,
 				041280652AEFA2F000972552 /* SignTextField.swift in Sources */,
 				0412806C2AEFABFE00972552 /* PasswordViewController.swift in Sources */,
 				041280562AEFA04800972552 /* SignInViewController.swift in Sources */,
 				F49C9BCD2AF3BE810015A712 /* BirthdayViewModel.swift in Sources */,
+				F4D3BC0D2AF750AB005A6D21 /* ShoppingListViewModel.swift in Sources */,
 				041280282AEF9BAB00972552 /* ViewController.swift in Sources */,
+				F4E25D3E2AF8B80300B6C24F /* StarListViewCell.swift in Sources */,
 				041280632AEFA0CE00972552 /* PointButton.swift in Sources */,
 				041280242AEF9BAB00972552 /* AppDelegate.swift in Sources */,
+				F4D3BC0B2AF7509D005A6D21 /* ShoppingListViewCell.swift in Sources */,
+				F4E25D3A2AF8B49000B6C24F /* StarViewModel.swift in Sources */,
 				041280732AEFAD4B00972552 /* NicknameViewController.swift in Sources */,
 				0412806A2AEFA91E00972552 /* SignUpViewController.swift in Sources */,
+				F4D3BC1A2AF778C6005A6D21 /* ShoppingListModel.swift in Sources */,
+				F4D3BC0F2AF750BF005A6D21 /* ShoppingListViewController.swift in Sources */,
 				041280712AEFAD3D00972552 /* PhoneViewController.swift in Sources */,
 				041280262AEF9BAB00972552 /* SceneDelegate.swift in Sources */,
 				041280582AEFA05300972552 /* SignInViewModel.swift in Sources */,
@@ -521,6 +565,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B74AWFMJGB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSACRxThreads/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Week16;
@@ -552,6 +597,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = B74AWFMJGB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = SeSACRxThreads/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Week16;
